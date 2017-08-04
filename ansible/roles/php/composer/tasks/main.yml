@@ -1,0 +1,16 @@
+---
+
+- stat: path=/usr/local/bin/composer
+  register: composer
+  tags:
+    - composer
+
+- name: install composer
+  shell: "{{ item }}"
+  with_items:
+    - wget https://getcomposer.org/composer.phar
+    - chmod +x ./composer.phar
+    - mv ./composer.phar /usr/local/bin/composer
+  when: composer.stat.exists == false
+  tags:
+    - composer
