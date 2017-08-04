@@ -1,0 +1,8 @@
+---
+
+- name: install redis server
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - redis-server
+
+- replace: dest=/etc/redis/redis.conf regexp='bind 127.0.0.1' replace='bind {{ redis_ip }}'
