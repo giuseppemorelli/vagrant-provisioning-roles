@@ -1,0 +1,5 @@
+---
+
+# tools.server
+tools_repository: https://github.com/gmdotnet/tools.server.git
+tools_folder: /home/tools.server

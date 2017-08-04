@@ -1,0 +1,10 @@
+---
+
+# tools.server
+- name: git clone tools.server
+  git: repo={{ tools_repository }} dest={{ tools_folder }} update=yes accept_hostkey=true
+
+- name: manage tools.server dependency
+  shell: "{{ item }}"
+  with_items:
+    - composer install -d={{ tools_folder }} --no-dev -o
