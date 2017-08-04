@@ -1,0 +1,8 @@
+---
+
+- name: Host provision
+  hosts: <vagrant hostname
+  sudo: true
+  remote_user: root
+  roles:
+    - database/utils
