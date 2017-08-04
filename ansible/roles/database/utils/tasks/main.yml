@@ -1,0 +1,12 @@
+---
+
+- name: install extra packages
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - mytop
+
+- name: mysqltuner install
+  shell: "{{ item }}"
+  with_items:
+    - wget http://mysqltuner.pl/ -O /usr/local/bin/mysqltuner
+    - chmod 777 /usr/local/bin/mysqltuner
