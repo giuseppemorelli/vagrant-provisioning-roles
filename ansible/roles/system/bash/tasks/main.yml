@@ -1,0 +1,4 @@
+---
+
+- name: bashrc customization
+  template: src=bashrc.j2 dest=/root/.bashrc owner=root mode=0644 backup=yes
