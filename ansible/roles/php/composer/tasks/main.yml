@@ -14,3 +14,11 @@
   when: composer.stat.exists == false
   tags:
     - composer
+
+- name: update composer
+  shell: "{{ item }}"
+  with_items:
+    - composer selfupdate
+  when: composer.stat.exists == true
+  tags:
+    - composer

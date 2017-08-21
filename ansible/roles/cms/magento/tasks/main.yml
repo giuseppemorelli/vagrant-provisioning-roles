@@ -16,6 +16,14 @@
   tags:
     - n98-magerun
 
+- name: update n98-magerun
+  shell: "{{ item }}"
+  with_items:
+    - n98-magerun self-update
+  when: magerun.stat.exists == true
+  tags:
+    - n98-magerun
+
 # modman
 - stat: path=/usr/local/bin/modman
   register: modman
