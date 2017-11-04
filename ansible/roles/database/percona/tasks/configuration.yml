@@ -1,0 +1,9 @@
+---
+# Path: database/percona/tasks
+
+- template: src=my.cnf.j2 dest=/root/.my.cnf mode=0644
+
+- name: configuration mysql-percona config files
+  replace: dest=/etc/mysql/my.cnf regexp='= 127.0.0.1' replace='= {{ mysql_ip }}'
+  notify:
+    - restart mysql

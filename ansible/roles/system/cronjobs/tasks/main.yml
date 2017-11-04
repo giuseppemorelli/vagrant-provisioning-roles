@@ -1,0 +1,5 @@
+---
+# Path: system/cronjobs/tasks
+
+- cron: name="CRONJOBNAME" minute="*/10" job="/usr/local/script.sh"
+

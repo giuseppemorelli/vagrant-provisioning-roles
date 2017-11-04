@@ -1,0 +1,14 @@
+---
+# Path: php/php5-fpm/handlers
+
+- name: restart php5-fpm
+  service: name=php5-fpm state=restarted
+
+- name: stop php5-fpm
+  service: name=php5-fpm state=stopped
+
+- name: start php5-fpm
+  service: name=php5-fpm state=started
+
+- name: reload php5-fpm
+  service: name=php5-fpm state=reloaded

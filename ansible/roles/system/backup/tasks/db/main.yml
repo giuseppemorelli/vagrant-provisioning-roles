@@ -1,0 +1,46 @@
+---
+# Path: system/backup/tasks/db
+
+- stat: path={{ backup-db }}
+  register: backup-db
+
+- stat: path={{ backup-db-week }}
+  register: backup-db-week
+
+- stat: path={{ backup-db-week-sync }}
+  register: backup-db-week-sync
+
+- name: create backup-db folder
+  shell: "{{ item }}"
+  with_items:
+    - mkdir {{ backup-db }}
+  when:
+   - backup-db.stat.exists == false
+
+- name: create backup-db-week folder
+  shell: "{{ item }}"
+  with_items:
+    - mkdir {{ backup-db-week }}
+  when:
+   - backup-db-week.stat.exists == flase
+
+- name: create backup-db-week-sync folder
+  shell: "{{ item }}"
+  with_items:
+    - mkdir {{ backup-db-week-sync }}
+  when:
+   - backup-db-week-sync.stat.exists == false
+
+- stat: path=/usr/local/bin/backup_database.sh
+  register: backupdb
+
+- stat: path=/usr/local/bin/backup_database_clean.sh
+  register: backupdbweek
+
+- name: copy backup db script
+  template: src=../../templates/backup_database.sh.j2 dest=/usr/local/bin/backup_database.sh owner=root mode=0777
+  when: backupdb.stat.exists == false
+
+- name: copy backup db clean script
+  template: src=../../templates/backup_database_clean.sh.j2 dest=/usr/local/bin/backup_database_clean.sh owner=root mode=0777
+  when: backupdbweek.stat.exists == false

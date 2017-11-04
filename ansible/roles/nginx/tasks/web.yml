@@ -1,0 +1,12 @@
+---
+# Path: nginx/tasks/web
+
+- name: tools.server config for nginx
+  template: src=../templates/web/tools.server.conf.j2 dest=/etc/nginx/sites-available/tools.server.conf owner=root mode=0644
+
+- name: enable nginx for magento-website.com
+  shell: "{{ item }}"
+  with_items:
+    - cd /etc/nginx/sites-enabled/ && ln -s ../sites-available/tools.server.conf 001-tools.server.conf
+  notify:
+    - restart nginx

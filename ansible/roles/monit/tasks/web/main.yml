@@ -1,0 +1,11 @@
+---
+# Path: monit/tasks/web
+
+- name: add nginx config to monit
+  template: src=../../templates/monit_nginx.conf.j2 dest=/etc/monit/conf.d/nginx.conf owner=root mode=0644
+
+- name: add php5-fpm config to monit
+  template: src=../../templates/monit_php5-fpm.conf.j2 dest=/etc/monit/conf.d/php5-fpm.conf owner=root mode=0644
+
+- name: add postfix config to monit
+  template: src=../../templates/monit_postfix.conf.j2 dest=/etc/monit/conf.d/postfix.conf owner=root mode=0644

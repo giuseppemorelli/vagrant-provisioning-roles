@@ -1,0 +1,20 @@
+---
+# Path: database/percona/tasks
+
+- stat: path=/tmp/percona-release_0.1-4.{{ debian_version }}_all.deb
+  register: percona_deb
+
+- name: get .deb apt installer
+  shell: cd /tmp/ && wget https://repo.percona.com/apt/percona-release_0.1-4.{{ debian_version }}_all.deb
+  when: percona_deb.stat.exists == false
+
+- name: install .deb package
+  shell: dpkg -i /tmp/percona-release_0.1-4.{{ debian_version }}_all.deb
+  when: percona_deb.stat.exists == false
+
+- name: install mysql-percona package
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+       - percona-server-server-{{ percona_version }}
+  environment:
+    DEBIAN_FRONTEND: noninteractive

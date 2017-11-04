@@ -1,0 +1,7 @@
+---
+# Path: monit/tasks
+
+- name: install monit
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - monit

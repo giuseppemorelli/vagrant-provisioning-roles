@@ -1,0 +1,13 @@
+server {
+    server_name   magento-website.com;
+    rewrite ^(.*) http://www.magento-website.com$1 permanent;
+}
+server {
+    server_name www.magento-website.com;
+    root /home/magento-website.com/htdocs/;
+
+    access_log  /var/log/nginx/magento-website.com_access.log;
+    error_log  /var/log/nginx/magento-website.com_error.log;
+
+    include magento.conf;
+}

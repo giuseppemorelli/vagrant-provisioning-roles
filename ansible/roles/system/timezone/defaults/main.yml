@@ -1,0 +1,5 @@
+---
+# Path: system/timezone/defaults
+
+# timezone
+system_timezone: 'Europe/Rome'

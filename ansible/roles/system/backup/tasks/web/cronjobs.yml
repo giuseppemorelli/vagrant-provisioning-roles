@@ -1,0 +1,5 @@
+---
+# Path: system/backup/tasks/web
+
+- cron: name="BACKUP | backup files" minute="0" hour="3" day="*/3" job="/usr/local/bin/backup_file.sh"
+- cron: name="BACKUP | backup files clean" minute="0" hour="4" job="/usr/local/bin/backup_file_clean.sh"

@@ -1,0 +1,9 @@
+---
+# Path: monit/defaults/
+
+# monitrc file
+monit_port: 2812
+email_server: 127.0.0.1
+email_alert: email@email
+email_from: from@email
+admin_credential: admin:mypwd

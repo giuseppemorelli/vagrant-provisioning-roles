@@ -1,0 +1,16 @@
+---
+# Path: database/percona/tasks
+
+# must be execute after mysql root password setting (mysql56.tml or mysql57.yml)
+
+- template: src=query_backup_56.j2 dest=/tmp/query_backup_56.sql
+- template: src=query_user_56.j2 dest=/tmp/query_user_56.sql
+
+- name: tuning mysql files
+  template: src=tuning.cnf.j2 dest=/etc/mysql/conf.d/tuning.cnf
+
+- name: MySQL set backup user
+  shell: mysql -u root < /tmp/query_backup_56.sql
+
+- name: MySQL set user for project
+  shell: mysql -u root < /tmp/query_user_56.sql

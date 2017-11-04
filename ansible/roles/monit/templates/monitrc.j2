@@ -1,0 +1,13 @@
+set daemon 30
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+set mailserver {{ email_server }}
+set alert {{ email_alert }}
+set eventqueue
+	basedir /var/lib/monit/events
+	slots 100
+set mail-format { from: {{ email_from }} }
+set httpd port {{ monit_port }} and
+	allow {{ admin_credential }}
+include /etc/monit/conf.d/*

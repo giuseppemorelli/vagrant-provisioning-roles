@@ -1,0 +1,14 @@
+---
+# Path: nginx/tasks
+
+- name: install nginx
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - nginx
+
+- name: nginx.conf configuration
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root mode=0644 backup=yes
+
+- name: disable all default website
+  shell: rm /etc/nginx/sites-enabled/* -r
+  ignore_errors: yes

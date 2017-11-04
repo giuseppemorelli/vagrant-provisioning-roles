@@ -1,0 +1,9 @@
+---
+# Path: database/percona/tasks
+
+# execute this task before configuration.ynk
+
+- template: src=query_mysql57.j2 dest=/tmp/query_mysql57.sql
+
+- name: MySQL Query config
+  shell: mysql -u root < /tmp/query_mysql57.sql

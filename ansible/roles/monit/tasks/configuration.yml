@@ -1,0 +1,5 @@
+---
+# Path: monit/tasks
+
+- name: monitrc configuration
+  template: src=monitrc.j2 dest=/etc/monit/monitrc owner=root mode=0600 backup=yes

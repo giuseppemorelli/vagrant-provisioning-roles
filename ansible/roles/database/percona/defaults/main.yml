@@ -1,0 +1,15 @@
+---
+# Path: database/percona/defaults/
+
+debian_version: jessie
+percona_version: 5.6
+
+root_pwd: qwerty123
+mysql_ip: 127.0.0.1
+
+db_user: local
+db_pwd: local
+db_name: local
+
+backup_user: backupuser
+backup_pwd: backupuser_pwd

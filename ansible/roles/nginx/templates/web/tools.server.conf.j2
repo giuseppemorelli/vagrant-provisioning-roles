@@ -1,0 +1,33 @@
+server {
+        server_name $hostname;
+        root /home/tools.server/;
+
+        access_log /var/log/nginx/tools.server_access.log;
+        error_log /var/log/nginx/tools.server_error.log;
+
+        index index.php;
+        location / {
+                autoindex on;
+                index index.html index.php; ## Allow a static html file to be shown first
+                try_files $uri $uri/ @handler; ## If missing pass the URI to Magento's front handler
+                expires 30d; ## Assume all files are cachable
+
+                ## auth_basic            "Restricted";
+                ## auth_basic_user_file  /etc/nginx/gmdotnetpwd;
+        }
+        location /. { ## Disable .htaccess and other hidden files
+                return 404;
+        }
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+                access_log off;
+                log_not_found off;
+                expires 12h;
+        }
+
+        location ~ \.php$ { ## Execute PHP scripts
+                expires off; ## Do not cache dynamic content
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params; ## See /etc/nginx/fastcgi_params
+        }
+}

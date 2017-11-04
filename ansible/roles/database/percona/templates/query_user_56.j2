@@ -1,0 +1,11 @@
+# Create db user
+DROP USER '{{ db_user }}'@'localhost';
+DROP USER '{{ db_user }}'@'%';
+FLUSH PRIVILEGES;
+CREATE DATABASE IF NOT EXISTS {{ db_name }};
+
+CREATE USER '{{ db_user }}'@'localhost' IDENTIFIED BY '{{ db_pwd }}';
+GRANT ALL PRIVILEGES ON {{ db_name }}.* TO '{{ db_user }}'@'localhost';
+
+CREATE USER '{{ db_user }}'@'%' IDENTIFIED BY '{{ db_pwd }}';
+GRANT ALL PRIVILEGES ON {{ db_name }}.* TO '{{ db_user }}'@'%';

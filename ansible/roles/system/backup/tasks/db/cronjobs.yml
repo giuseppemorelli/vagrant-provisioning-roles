@@ -1,0 +1,5 @@
+---
+# Path: system/backup/tasks/db
+
+- cron: name="BACKUP | backup database" minute="0" hour="1,12,18" job="/usr/local/bin/backup_database.sh {{ backup_number_db }} | mail -r \"{{ email_alert_from }}\" -s \"{{ email_subject_alert }}\" {{ email_alert_to }}"
+- cron: name="BACKUP | backup database clean" minute="0" hour="2" job="/usr/local/bin/backup_database_clean.sh"

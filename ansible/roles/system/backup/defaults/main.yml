@@ -1,0 +1,21 @@
+---
+# Path: system/backup/defaults/
+
+# DATABASE
+backup-db: /home/backup-db
+backup-db-week: /home/backup-db-week
+backup-db-week-sync: /home/backup-db-week/SYNC
+backup_user: myuser
+backup_pwd: mypwd
+backup_number_db: 2
+email_alert_from: email@from
+email_subject_alert: "BACKUP database"
+email_alert_to: email@to
+
+# WEB
+backup: /home/backup
+backup-week: /home/backup-week
+backup-week-sync: /home/backup-week/SYNC
+backup_folders: "/etc /home/website"
+backup_email_alert: email@to_web
+backup_email_subject: "BACKUP website"

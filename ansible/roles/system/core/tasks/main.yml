@@ -1,0 +1,16 @@
+---
+# Path: system/core/tasks
+
+- name: apt-get update
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: apt-get dist-upgrade
+  apt: upgrade=dist cache_valid_time=86400
+
+- name: install core packages
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - git
+       - curl
+       - htop
+       - rsync
