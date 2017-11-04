@@ -7,4 +7,4 @@
 - name: manage tools.server dependency
   shell: "{{ item }}"
   with_items:
-    - composer install -d={{ tools_folder }} --no-dev -o
+    - composer install -d={{ tools_folder }}
