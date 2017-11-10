@@ -7,4 +7,5 @@
     - mkfs.ext4 /dev/sdb1
     - echo "/dev/sdb1       /mnt/extra  ext4 user,defaults      0       0" >> /etc/fstab
     - mkdir /mnt/extra
+    - chown vagrant:vagrant /mnt/extra
     - mount /dev/sdb1 /mnt/extra
