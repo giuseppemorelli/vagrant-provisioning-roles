@@ -1,0 +1,10 @@
+---
+
+- name: format and configure extra hard disk
+  shell: "{{ item }}"
+  with_items:
+    - echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/sdb
+    - mkfs.ext4 /dev/sdb1
+    - echo "/dev/sdb1       /mnt/extra  ext4 user,defaults      0       0" >> /etc/fstab
+    - mkdir /mnt/extra
+    - mount /dev/sdb1 /mnt/extra
