@@ -9,6 +9,4 @@
 - name: install aws cli
   shell: "{{ item }}"
   with_items:
-    - pip install awscli --upgrade --user
-    - echo "PATH=~/.local/bin:$PATH" >> ~/.profile
-    - source ~/.profile
+    - pip install awscli --upgrade
