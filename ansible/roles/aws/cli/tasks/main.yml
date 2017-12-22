@@ -1,0 +1,14 @@
+---
+
+- name: install dependency
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - python
+       - python-pip
+
+- name: install aws cli
+  shell: "{{ item }}"
+  with_items:
+    - pip install awscli --upgrade --user
+    - echo "PATH=~/.local/bin:$PATH" >> ~/.profile
+    - source ~/.profile
