@@ -1,1 +1,4 @@
 /ansible/playbook.yml
+/ansible/roles/custom/*
+!/ansible/roles/custom/.gitkeep
+
