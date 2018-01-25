@@ -33,9 +33,17 @@
 - name: install modman
   shell: "{{ item }}"
   with_items:
-    - wget https://github.com/colinmollenhour/modman/blob/master/modman
+    - wget https://raw.githubusercontent.com/colinmollenhour/modman/master/modman
     - chmod +x ./modman
     - mv ./modman /usr/local/bin/modman
   when: modman.stat.exists == false
   tags:
     - modman
+
+- name: install n98-magerun modules
+  shell: "{{ item }}"
+  with_items:
+    - mkdir /usr/local/share/n98-magerun/
+    - mkdir /usr/local/share/n98-magerun/modules/
+    - cd /usr/local/share/n98-magerun/modules/ && git clone https://github.com/gmdotnet/GMdotnet_MagerunAddons.git
+  ignore_errors: yes
