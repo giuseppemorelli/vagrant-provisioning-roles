@@ -7,9 +7,19 @@
   shell: mysql -u root -pvagrant < /tmp/create_dbuser.sql
   ignore_errors: yes
 
+#- name: setting up mysql in folder outside main partition
+#  shell: "{{ item }}"
+#  with_items:
+#    - service mysql stop
+#    - mv /var/lib/mysql /mnt/db/
+#    - cd /var/lib/ && ln -s /mnt/db/mysql mysql
+#    - chown mysql:mysql /var/lib/mysql -R
+#    - chown mysql:mysql /mnt/db/mysql -R
+#    - service mysql restart
+
 - replace: dest=/etc/mysql/my.cnf regexp='(\s+)127.0.0.1(\s+.*)?$' replace={{ mysql_ip }}
   notify:
     - restart mysql
 
-- name: Restore DB project
-  shell: mysql -u root -pvagrant < {{ db_filepath }}
+#- name: Restore DB project
+#  shell: mysql -u root -pvagrant < {{ db_filepath }}
