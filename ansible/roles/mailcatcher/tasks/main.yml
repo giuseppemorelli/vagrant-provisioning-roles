@@ -1,0 +1,13 @@
+---
+
+- name: install ruby gem dependency
+  apt: name={{item}} force=yes state=installed
+  with_items:
+       - ruby-all-dev
+       - rubygems
+       - ruby-sqlite3
+
+- name: install mailcatcher
+  shell: "{{ item }}"
+  with_items:
+    - gem install mailcatcher
